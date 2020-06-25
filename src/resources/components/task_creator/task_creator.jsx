@@ -2,17 +2,23 @@ import React, {useState} from 'react';
 
 export const TaskCreator = (props) => {
 	class Task {
-		constructor(taskName) {
-			this.taskName = taskName
+		constructor(taskName, id) {
+			this.taskName = taskName;
+			this.id = id;
+			this.completed = false;
 		}
 	}
 
 	const [inputCurrentText, setInputCurrentText] = useState('');
 
 	const addTask = (e) => {
-		e.preventDefault()
-		props.addTask(new Task(inputCurrentText))
-		setInputCurrentText('')
+		e.preventDefault();
+		if(inputCurrentText) {
+			const id = '#' + Math.random().toString(36).substr(2, 9)
+			props.addTask(new Task(inputCurrentText, id))
+			setInputCurrentText('')
+		}
+		
 	}
 
 	const changeText = (e) => {
