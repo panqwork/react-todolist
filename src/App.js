@@ -14,6 +14,7 @@ function App() {
   const addTask = (task) => {
     setList([...list, {...task}]);
   }
+
   const removeTask = (id) => {
     let newList = list.filter(item => (item.id !== id) ? item : false);
     if(newList){
@@ -29,19 +30,33 @@ function App() {
     })
     setList(newList)
   }
-  console.log(list)
+  const editTask = (id, data) => {
+    let newList = list.map(item => {
+      if(item.id === id){
+        item.taskName = data
+      }
+      return item
+    })
+    setList(newList)
+  }
+  
   return (
     <Router>
       <div className="App">
         ToDoListApp
         <TaskCreator addTask={addTask}/>
+
         <TaskTabs/>
+
         <Switch>
+          <Route exact path={'/all'}>
+            <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
+          </Route>
           <Route exact path={'/'}>
-            <TaskList taskType={'active'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
+            <TaskList editTask={editTask} taskType={'active'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
           </Route>
           <Route exact path={'/completed'}>
-            <TaskList taskType={'completed'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
+            <TaskList editTask={editTask} taskType={'completed'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
           </Route>
         </Switch>
       </div>

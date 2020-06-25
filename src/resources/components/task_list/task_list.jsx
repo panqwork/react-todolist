@@ -26,7 +26,7 @@ export const TaskList = (props) => {
 			tasks = props.tasks
 			break;
 	}
-	const taskList = tasks.map((item, index) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={index} data={item}/>)
+	const taskList = tasks.map((item, index) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={index} data={item} editTask={props.editTask}/>)
 	return(
 		<div className={s.task_list}>
 			{taskList}
