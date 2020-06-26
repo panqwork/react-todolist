@@ -48,17 +48,8 @@ function App() {
 
         <TaskTabs/>
 
-        <Switch>
-          <Route exact path={'/all'}>
-            <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
-          </Route>
-          <Route exact path={'/'}>
-            <TaskList editTask={editTask} taskType={'active'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
-          </Route>
-          <Route exact path={'/completed'}>
-            <TaskList editTask={editTask} taskType={'completed'} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
-          </Route>
-        </Switch>
+        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
+        
       </div>
     </Router>
   );

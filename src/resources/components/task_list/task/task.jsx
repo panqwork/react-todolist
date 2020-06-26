@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import s from './style.module.scss';
 
 export const Task = (props) => {
-	const {taskName, id} = props.data
+	const {taskName, id, completed} = props.data
 
 	const [editMode, setEditMode] = useState(false)
 
@@ -15,7 +15,7 @@ export const Task = (props) => {
 
 	const saveRename = () => {
 		if(inputCurrentText !== taskName) {
-			props.editTask(id, inputCurrentText)
+			props.editTask(id, inputCurrentText);
 		}	
 		setEditMode(false);
 	}
@@ -23,6 +23,16 @@ export const Task = (props) => {
 	const cancelRename = () => {
 		setInputCurrentText(taskName)
 		setEditMode(false);
+	}
+
+	const completeTaskOnClick = () => {
+		props.completeTask(id)
+	}
+	const removeTaskOnClick = () => {
+		props.removeTask(id)
+	}
+	const renameTaskOnClick = () => {
+		setEditMode(true)
 	}
 
 	return(
@@ -38,16 +48,13 @@ export const Task = (props) => {
 				
 				: 
 				<>
-					<button onClick={()=>{
-						props.completeTask(id)
-					}}>complete</button>
+					<button disabled={completed} onClick={completeTaskOnClick}>complete</button>
+
 					{taskName}
-					<button onClick={()=>{
-					props.removeTask(id)
-					}}>delete</button>
-					<button onClick={()=>{
-					setEditMode(true)
-					}}>rename</button>
+
+					<button onClick={removeTaskOnClick}>remove</button>
+
+					<button onClick={renameTaskOnClick}>rename</button>
 				</>
 			}
 		</div>

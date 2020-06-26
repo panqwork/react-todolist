@@ -3,19 +3,20 @@ import React from 'react';
 import {Task} from './task/task.jsx';
 
 import s from './style.module.scss';
+import { withRouter } from 'react-router-dom';
 
-export const TaskList = (props) => {
+const TaskListComponent = (props) => {
 	let tasks = []
 
-	switch (props.taskType) {
-		case 'active':
+	switch (props.location.pathname.toLowerCase()) {
+		case '/active':
 			tasks = props.tasks.filter(item => {
 				if(!item.completed){
 					return item
 				}
 			})
 			break;
-		case 'completed':
+		case '/completed':
 			tasks = props.tasks.filter(item => {
 				if(item.completed){
 					return item
@@ -33,3 +34,5 @@ export const TaskList = (props) => {
 		</div>
 	)
 }
+
+export const TaskList = withRouter(TaskListComponent)
