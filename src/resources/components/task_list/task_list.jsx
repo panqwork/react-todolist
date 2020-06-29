@@ -6,28 +6,34 @@ import s from './style.module.scss';
 import { withRouter } from 'react-router-dom';
 
 const TaskListComponent = (props) => {
-	let tasks = []
+	let taskList = [];
 
 	switch (props.location.pathname.toLowerCase()) {
 		case '/active':
-			tasks = props.tasks.filter(item => {
+			taskList = props.tasks.filter(item => {
 				if(!item.completed){
 					return item
 				}
 			})
 			break;
 		case '/completed':
-			tasks = props.tasks.filter(item => {
+			taskList = props.tasks.filter(item => {
 				if(item.completed){
 					return item
 				}
 			})
 			break
 		default:
-			tasks = props.tasks
+			taskList = props.tasks
 			break;
 	}
-	const taskList = tasks.map((item, index) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={index} data={item} editTask={props.editTask}/>)
+
+	// sort by priority
+	taskList.sort((a,b)=>(b.priority - a.priority))
+
+	taskList = taskList.map((item, index) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={index} data={item} editTask={props.editTask}/>)
+
+	
 	return(
 		<div className={s.task_list}>
 			{taskList}
