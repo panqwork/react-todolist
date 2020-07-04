@@ -26,7 +26,7 @@ export const TaskCreator = (props) => {
 			this.taskName = taskName;
 			this.id = id;
 			this.priority = priority;
-			this.completed = false;
+			this.completed = 0;
 		}
 	}
 

@@ -24,7 +24,7 @@ function App() {
   const completeTask = (id) => {
     let newList = list.map(item => {
       if(item.id === id){
-        item.completed = !item.completed
+        item.completed = 1
       }
       return item
     })
@@ -39,7 +39,6 @@ function App() {
     })
     setList(newList)
   }
-  
   return (
     <Router>
       <div className="App">
