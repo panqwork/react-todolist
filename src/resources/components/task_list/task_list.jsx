@@ -34,7 +34,7 @@ const TaskListComponent = (props) => {
 	// sort by completed
 	taskList.sort((a,b)=>(a.completed - b.completed));
 
-	taskList = taskList.map((item, index) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={index} data={item} editTask={props.editTask}/>)
+	taskList = taskList.map((item) => <Task completeTask={props.completeTask} removeTask={props.removeTask} key={item.id} data={item} editTask={props.editTask}/>)
 
 	
 	return(

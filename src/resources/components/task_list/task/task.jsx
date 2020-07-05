@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import {Bin, Edit} from '../../generic/svg_icons.jsx';
 
 import s from './style.module.scss';
 
 export const Task = (props) => {
 	const {taskName, id, completed} = props.data
-
+	let completedClass = completed ? 'completed': null
 	const [editMode, setEditMode] = useState(false)
 
 	const [inputCurrentText, setInputCurrentText] = useState(taskName);
@@ -25,8 +26,8 @@ export const Task = (props) => {
 		setEditMode(false);
 	}
 
-	const completeTaskOnClick = () => {
-		props.completeTask(id)
+	const completeTaskOnClick = (e) => {
+		props.completeTask(id);
 	}
 	const removeTaskOnClick = () => {
 		props.removeTask(id)
@@ -36,25 +37,29 @@ export const Task = (props) => {
 	}
 
 	return(
-		<div className={s.task}>
+		
+		<div data-priority={props.data.priority} className={[s.task, s[completedClass]].join(' ')}>
 			{
 				editMode 
 				?
-				<>
+				<div className={s.rename_tools}>
 					<input onChange={changeText} type="text" autoFocus={true} value={inputCurrentText}/> 
 					<button onClick={saveRename}>save</button>
 					<button onClick={cancelRename}>cancel</button>
-				</>
+				</div>
 				
 				: 
 				<>
-					<button disabled={completed} onClick={completeTaskOnClick}>complete</button>
+					<button className={s.complete_btn} disabled={completed} onClick={completeTaskOnClick}></button>
 
-					{taskName}
-
-					<button onClick={removeTaskOnClick}>remove</button>
-
-					<button onClick={renameTaskOnClick}>rename</button>
+					<p>
+						{taskName}
+					</p>
+					<div className={s.btn_group}>
+						<button onClick={removeTaskOnClick}><Bin/></button>
+						<button onClick={renameTaskOnClick}><Edit/></button>
+					</div>
+					
 				</>
 			}
 		</div>

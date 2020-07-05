@@ -44,7 +44,6 @@ export const TaskCreator = (props) => {
 			setInputCurrentText('');
 			setPriority(0)
 		}
-		
 	}
 
 	const changeTextOnInput = (e) => {
@@ -62,12 +61,11 @@ export const TaskCreator = (props) => {
 
 	return(
 		<>
-			<form onSubmit={addTask} action="POST">
+			<form className={s.main_form} onSubmit={addTask} action="POST">
 				<input onChange={changeTextOnInput} value={inputCurrentText} type="text"/>
-				
 				<div className={s.btn_group}>
 					<div className={s.select_priority}>
-						<button onClick={toggleSelectPriorityOnClick} type="button">Priority</button>
+						<button data-priority={priority} onClick={toggleSelectPriorityOnClick} type="button">Priority</button>
 						{
 							selectPriority ?
 							<SelectPriority priority={priority} changePriority={changePriority}/>:null
