@@ -15,9 +15,11 @@ export const Task = (props) => {
 	}
 
 	const saveRename = () => {
-		if(inputCurrentText !== taskName) {
+		if(inputCurrentText !== taskName && inputCurrentText !== '') {
 			props.editTask(id, inputCurrentText);
-		}	
+		}	else {
+			setInputCurrentText(taskName)
+		}
 		setEditMode(false);
 	}
 
