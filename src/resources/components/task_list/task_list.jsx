@@ -11,16 +11,12 @@ const TaskListComponent = (props) => {
 	switch (props.location.pathname.toLowerCase()) {
 		case '/active':
 			taskList = props.tasks.filter(item => {
-				if(!item.completed){
-					return item
-				}
+				return !item.completed ? item:null
 			})
 			break;
 		case '/completed':
 			taskList = props.tasks.filter(item => {
-				if(item.completed){
-					return item
-				}
+				return item.completed ? item:null
 			})
 			break
 		default:

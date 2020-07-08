@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 import {TaskCreator} from './resources/components/task_creator/task_creator.jsx'
 import {TaskList} from './resources/components/task_list/task_list.jsx';
