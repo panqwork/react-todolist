@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 
 const TaskListComponent = (props) => {
 	let taskList = [];
-
 	switch (props.location.pathname.toLowerCase()) {
 		case '/active':
 			taskList = props.tasks.filter(item => {

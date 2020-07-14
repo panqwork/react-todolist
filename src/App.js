@@ -11,45 +11,46 @@ import { ListTitle } from './resources/components/list_title/list_title.jsx';
 function App() {
 
   
-  const [list, setList] = useState([]);
+  const [list, setList] = useState({
+    tasks: [],
+    count: 0
+  });
 
   const addTask = (task) => {
-    setList([...list, {...task}]);
+    setList({...list, tasks: [...list.tasks, task], count: list.count+1});
   }
 
   const removeTask = (id) => {
-    let newList = list.filter(item => (item.id !== id) ? item : false);
-    if(newList){
-      setList(newList)
-    }
+    let newList = list.tasks.filter(item => (item.id !== id) ? item : false);
+    setList({tasks:[...newList], count: list.count})
   }
   const completeTask = (id) => {
-    let newList = list.map(item => {
+    let newList = list.tasks.map(item => {
       if(item.id === id){
         item.completed = 1
       }
       return item
     })
-    setList(newList)
+    setList({tasks:[...newList], count: list.count})
   }
   const editTask = (id, data) => {
-    let newList = list.map(item => {
+    let newList = list.tasks.map(item => {
       if(item.id === id){
         item.taskName = data
       }
       return item
     })
-    setList(newList)
+    setList({tasks:[...newList], count: list.count})
   }
   return (
     <Router>
       <div className="App">
         <ListTitle/>
-        <TaskCreator addTask={addTask}/>
+        <TaskCreator count={list.count} addTask={addTask}/>
 
         <TaskTabs/>
 
-        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
+        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list.tasks}/>
         
       </div>
     </Router>

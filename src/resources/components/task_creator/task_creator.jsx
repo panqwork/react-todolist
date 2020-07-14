@@ -39,8 +39,7 @@ export const TaskCreator = (props) => {
 	const addTask = (e) => {
 		e.preventDefault();
 		if(inputCurrentText) {
-			const id = '#' + Math.random().toString(36).substr(2, 9)
-			props.addTask(new Task(inputCurrentText, id, priority))
+			props.addTask(new Task(inputCurrentText, props.count, priority))
 			setInputCurrentText('');
 			setPriority(0)
 		}
