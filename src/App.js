@@ -17,7 +17,7 @@ function App() {
   });
 
   const addTask = (task) => {
-    setList({...list, tasks: [...list.tasks, task], count: list.count+1});
+    setList({...list, tasks: [task,...list.tasks], count: list.count+1});
   }
 
   const removeTask = (id) => {
