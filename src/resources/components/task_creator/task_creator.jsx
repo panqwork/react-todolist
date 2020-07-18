@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
-import s from './style.module.scss'
+import s from './style.module.scss';
+
+import {Button, Input} from '../../ui/atoms/index.js';
 
 
 const SelectPriority = (props) => {
@@ -61,16 +63,16 @@ export const TaskCreator = (props) => {
 	return(
 		<>
 			<form className={s.main_form} onSubmit={addTask} action="POST">
-				<input onChange={changeTextOnInput} value={inputCurrentText} type="text"/>
+				<Input onChange={changeTextOnInput} value={inputCurrentText} variant="large" type="text"/>
 				<div className={s.btn_group}>
 					<div className={s.select_priority}>
-						<button data-priority={priority} onClick={toggleSelectPriorityOnClick} type="button">Priority</button>
+						<Button onClick={toggleSelectPriorityOnClick} data-priority={priority} variant={"switcher"} type="button">Priority</Button>
 						{
 							selectPriority ?
 							<SelectPriority priority={priority} changePriority={changePriority}/>:null
 						}
 					</div>
-					<button type="submit">ADD</button>
+					<Button variant="primary" type="submit">ADD</Button>
 				</div>
 			</form>
 		</>

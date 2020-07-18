@@ -3,6 +3,8 @@ import {Bin, Edit} from '../../generic/svg_icons.jsx';
 
 import s from './style.module.scss';
 
+import {Button,Input} from '../../../ui/atoms/index.js';
+
 export const Task = (props) => {
 	const {taskName, id, completed} = props.data
 	let completedClass = completed ? 'completed': null
@@ -45,9 +47,9 @@ export const Task = (props) => {
 				editMode 
 				?
 				<div className={s.rename_tools}>
-					<input onChange={changeText} type="text" autoFocus={true} value={inputCurrentText}/> 
-					<button onClick={saveRename}>save</button>
-					<button onClick={cancelRename}>cancel</button>
+					<Input onChange={changeText} type="text" autoFocus={true} value={inputCurrentText} variant="normal"/>
+					<Button variant="light" onClick={saveRename}>save</Button>
+					<Button variant="light" onClick={cancelRename}>cancel</Button>
 				</div>
 				
 				: 

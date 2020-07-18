@@ -1,0 +1,23 @@
+.btn {
+  border: none;
+  padding: 5px 15px;
+  &-primary {  
+    cursor: pointer;
+    background: #f1bc19;
+    color: #fff;
+  }
+  &-switcher {
+    border-right: 2px solid transparent;
+    border-left: 2px solid transparent;
+    transition: border-color .5s;
+    &[data-priority='1'] {
+      border-color: #4BD762;
+    }
+    &[data-priority='2'] {
+      border-color: #f1bc19;
+    }
+    &[data-priority='3'] {
+      border-color: #ee3e54;
+    }
+  }
+}

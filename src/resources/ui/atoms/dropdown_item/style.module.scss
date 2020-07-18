@@ -1,0 +1,10 @@
+.dropdown_item {
+  cursor: pointer;
+  padding: 7px 10px;
+  &.active {
+    background: #f3f3f3;
+  }
+  &:hover {
+    background: #f3f3f3;
+  }
+}
