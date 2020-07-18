@@ -11,10 +11,7 @@ import { ListTitle } from './resources/components/list_title/list_title.jsx';
 function App() {
 
   
-  const [list, setList] = useState({
-    tasks: [],
-    count: 0
-  });
+  const [list, setList] = useState([]);
 
   useEffect(()=>{
     if(localStorage.getItem('tasks')){
@@ -24,36 +21,36 @@ function App() {
   }, []);
 
   const addTask = (task) => {
-    const newList = {...list, tasks: [task,...list.tasks], count: list.count+1};
+    const newList = [task, ...list];
     setList(newList);
     localStorage.setItem('tasks', JSON.stringify(newList));
   }
 
   const removeTask = (id) => {
-    const updatedTasks = list.tasks.filter(item => (item.id !== id) ? item : false);
-    const newList = {tasks:[...updatedTasks], count: list.count}
+    const updatedTasks = list.filter(item => (item.id !== id) ? item : false);
+    const newList = [...updatedTasks]
     setList(newList)
     localStorage.setItem('tasks', JSON.stringify(newList));
   }
   const completeTask = (id) => {
-    const updatedTasks = list.tasks.map(item => {
+    const updatedTasks = list.map(item => {
       if(item.id === id){
         item.completed = 1
       }
       return item
     })
-    const newList = {tasks:[...updatedTasks], count: list.count}
+    const newList = [...updatedTasks]
     setList(newList)
     localStorage.setItem('tasks', JSON.stringify(newList));
   }
   const editTask = (id, data) => {
-    const updatedTasks = list.tasks.map(item => {
+    const updatedTasks = list.map(item => {
       if(item.id === id){
         item.taskName = data
       }
       return item
     })
-    const newList = {tasks:[...updatedTasks], count: list.count}
+    const newList = [...updatedTasks]
     setList(newList);
     localStorage.setItem('tasks', JSON.stringify(newList));
   }
@@ -61,11 +58,11 @@ function App() {
     <Router>
       <div className="App">
         <ListTitle/>
-        <TaskCreator count={list.count} addTask={addTask}/>
+        <TaskCreator addTask={addTask}/>
 
         <TaskTabs/>
 
-        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list.tasks}/>
+        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
         
       </div>
     </Router>
