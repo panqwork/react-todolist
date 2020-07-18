@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {BrowserRouter as Router} from 'react-router-dom';
 
@@ -16,31 +16,46 @@ function App() {
     count: 0
   });
 
+  useEffect(()=>{
+    if(localStorage.getItem('tasks')){
+      console.log('Local storage activated!');
+      setList(JSON.parse(localStorage.getItem('tasks')));
+    }
+  }, []);
+
   const addTask = (task) => {
-    setList({...list, tasks: [task,...list.tasks], count: list.count+1});
+    const newList = {...list, tasks: [task,...list.tasks], count: list.count+1};
+    setList(newList);
+    localStorage.setItem('tasks', JSON.stringify(newList));
   }
 
   const removeTask = (id) => {
-    let newList = list.tasks.filter(item => (item.id !== id) ? item : false);
-    setList({tasks:[...newList], count: list.count})
+    const updatedTasks = list.tasks.filter(item => (item.id !== id) ? item : false);
+    const newList = {tasks:[...updatedTasks], count: list.count}
+    setList(newList)
+    localStorage.setItem('tasks', JSON.stringify(newList));
   }
   const completeTask = (id) => {
-    let newList = list.tasks.map(item => {
+    const updatedTasks = list.tasks.map(item => {
       if(item.id === id){
         item.completed = 1
       }
       return item
     })
-    setList({tasks:[...newList], count: list.count})
+    const newList = {tasks:[...updatedTasks], count: list.count}
+    setList(newList)
+    localStorage.setItem('tasks', JSON.stringify(newList));
   }
   const editTask = (id, data) => {
-    let newList = list.tasks.map(item => {
+    const updatedTasks = list.tasks.map(item => {
       if(item.id === id){
         item.taskName = data
       }
       return item
     })
-    setList({tasks:[...newList], count: list.count})
+    const newList = {tasks:[...updatedTasks], count: list.count}
+    setList(newList);
+    localStorage.setItem('tasks', JSON.stringify(newList));
   }
   return (
     <Router>
