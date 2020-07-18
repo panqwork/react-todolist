@@ -39,7 +39,7 @@ export const TaskCreator = (props) => {
 	const addTask = (e) => {
 		e.preventDefault();
 		if(inputCurrentText) {
-			props.addTask(new Task(inputCurrentText, props.count, priority))
+			props.addTask(new Task(inputCurrentText, Date.now(), priority))
 			setInputCurrentText('');
 			setPriority(0)
 		}
