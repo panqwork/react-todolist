@@ -15,16 +15,17 @@ import {Tabs} from './resources/ui/molecules/';
 function App() {
 
   
-  const [list, setList] = useState([{taskName: 'Ваша первая карточка', id: 1, priority: 0, completed: 0}]);
+  const [list, setList] = useState([]);
 
   useEffect(()=>{
-    if(localStorage.getItem('tasks')){
-      setList(JSON.parse(localStorage.getItem('tasks')));
-    }
+    const localTasks = JSON.parse(localStorage.getItem('tasks')) || []
+    setList(localTasks);
   }, []);
 
   useEffect(()=>{
-    localStorage.setItem('tasks', JSON.stringify(list))
+    if(list.length) {
+      localStorage.setItem('tasks', JSON.stringify(list));
+    }
   }, [list])
 
   const addTask = (task) => {
