@@ -15,26 +15,25 @@ import {Tabs} from './resources/ui/molecules/';
 function App() {
 
   
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([{taskName: 'Ваша первая карточка', id: 1, priority: 0, completed: 0}]);
 
   useEffect(()=>{
     if(localStorage.getItem('tasks')){
-      console.log('Local storage activated!');
       setList(JSON.parse(localStorage.getItem('tasks')));
     }
   }, []);
 
+  useEffect(()=>{
+    localStorage.setItem('tasks', JSON.stringify(list))
+  }, [list])
+
   const addTask = (task) => {
-    const newList = [task, ...list];
-    setList(newList);
-    localStorage.setItem('tasks', JSON.stringify(newList));
+    setList([task, ...list]);
   }
 
   const removeTask = (id) => {
     const updatedTasks = list.filter(item => (item.id !== id) ? item : false);
-    const newList = [...updatedTasks]
-    setList(newList)
-    localStorage.setItem('tasks', JSON.stringify(newList));
+    setList([...updatedTasks]);
   }
   const completeTask = (id) => {
     const updatedTasks = list.map(item => {
@@ -43,9 +42,7 @@ function App() {
       }
       return item
     })
-    const newList = [...updatedTasks]
-    setList(newList)
-    localStorage.setItem('tasks', JSON.stringify(newList));
+    setList([...updatedTasks])
   }
   const editTask = (id, data) => {
     const updatedTasks = list.map(item => {
@@ -54,9 +51,7 @@ function App() {
       }
       return item
     })
-    const newList = [...updatedTasks]
-    setList(newList);
-    localStorage.setItem('tasks', JSON.stringify(newList));
+    setList([...updatedTasks]);
   }
   return (
     <Router>
