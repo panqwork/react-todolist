@@ -1,0 +1,17 @@
+.inp {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #f9dbd2;
+  &-large {
+    height: 30px;
+    font-size: 18px;
+    transition: border-width .4s;
+    margin-bottom: 5px;
+    &:focus {
+      border-width: 2px;
+    }
+  }
+  &-normal {
+    height: 23px;
+  }
+}

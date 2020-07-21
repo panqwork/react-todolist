@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  svg {
+    animation-name: rotate-logo;
+    animation-duration: 1500ms;
+    animation-iteration-count: 1;
+  }
+  h1 {
+    font-size: 36px;  
+    margin-bottom: 20px;
+  }
+}
+
+@keyframes rotate-logo {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
