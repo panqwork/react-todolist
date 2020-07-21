@@ -1,71 +1,12 @@
-import React, {useState, useEffect} from 'react';
-
+import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-
-import {TaskCreator} from './resources/components/task_creator/task_creator.jsx'
-import {TaskList} from './resources/components/task_list/task_list.jsx';
-import {TaskTabs} from './resources/components/task_tabs/task_tabs.jsx';
-import { ListTitle } from './resources/components/list_title/list_title.jsx';
-import {FormCreate} from './resources/ui/organisms';
-
-import {Tabs} from './resources/ui/molecules/';
-
-
+import {Todo} from './resources/features/index.js'
 
 function App() {
-
-  
-  const [list, setList] = useState([]);
-
-  useEffect(()=>{
-    const localTasks = JSON.parse(localStorage.getItem('tasks')) || []
-    setList(localTasks);
-  }, []);
-
-  useEffect(()=>{
-    if(list.length) {
-      localStorage.setItem('tasks', JSON.stringify(list));
-    }
-  }, [list])
-
-  const addTask = (task) => {
-    setList([task, ...list]);
-  }
-
-  const removeTask = (id) => {
-    const updatedTasks = list.filter(item => (item.id !== id) ? item : false);
-    setList([...updatedTasks]);
-  }
-  const completeTask = (id) => {
-    const updatedTasks = list.map(item => {
-      if(item.id === id){
-        item.completed = 1
-      }
-      return item
-    })
-    setList([...updatedTasks])
-  }
-  const editTask = (id, data) => {
-    const updatedTasks = list.map(item => {
-      if(item.id === id){
-        item.taskName = data
-      }
-      return item
-    })
-    setList([...updatedTasks]);
-  }
   return (
     <Router>
       <div className="App">
-        <FormCreate/> 
-        <ListTitle/>
-        <TaskCreator addTask={addTask}/>
-
-        <TaskTabs/>
-        <Tabs items={['All','Active','Completed']}/>
-
-        <TaskList editTask={editTask} completeTask={completeTask} removeTask={removeTask} tasks={list}/>
-        
+        <Todo/>
       </div>
     </Router>
   );

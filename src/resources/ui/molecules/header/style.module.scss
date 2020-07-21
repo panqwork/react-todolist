@@ -1,15 +1,15 @@
-.list_title {
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-  }
-  img {
+  svg {
     animation-name: rotate-logo;
     animation-duration: 1500ms;
     animation-iteration-count: 1;
+  }
+  h1 {
+    font-size: 36px;  
+    margin-bottom: 20px;
   }
 }
 

@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Button, Input} from '../../atoms/index.js';
 import {Dropdown} from '../../molecules/'
 import s from './style.module.scss';
+import {Context} from '../../../features/context.js';
 
 export const FormCreate = (props) => {
-  const [inputText, inputControl] = useState('');
+  const [inputText, setInputText] = useState('');
   const [priority, setPriority] = useState(0);
+  const {addTask} = useContext(Context);
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    console.log(inputText, `priority: ${priority}`)
+    addTask(inputText, priority);
+    setInputText('');
+    setPriority(0);
   }
 
   return(
     <form onSubmit={onSubmitForm} className={s.form_create} action="POST">
 
       <Input onChange={(e)=>{
-        inputControl(e.target.value)
+        setInputText(e.target.value)
       }} value={inputText} variant="large" type="text"/>
 
       <div className={s.btn_group}>
