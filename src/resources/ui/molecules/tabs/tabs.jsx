@@ -4,7 +4,7 @@ import {Tab} from '../../atoms/index.js';
 import s from './style.module.scss';
 
 const TabsComponent = (props) => {
-  let activeTab = (props.location.pathname).substring(1) || props.items[0].toLowerCase();
+  let activeTab = (props.location.pathname).substring(16) || props.items[0].toLowerCase();
 
   const items = props.items.map((item, index) => <Tab className={(activeTab === item.toLowerCase())?"active":null} key={index} tabName={item}/>)
   return(
