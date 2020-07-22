@@ -5,8 +5,8 @@ import {withRouter} from 'react-router-dom';
 
 const TaskListComponent = (props) => {
   const {list} = useContext(Context);
-  let taskList = [];
-	switch (props.location.pathname.toLowerCase()) {
+	let taskList = [];
+	switch (props.location.pathname.substring(15).toLowerCase()) {
 		case '/active':
 			taskList = list.filter(item => {
 				return !item.completed ? item:null
