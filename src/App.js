@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import {Todo} from './resources/features/index.js'
+import {Todo} from './features/index.js'
 
 function App() {
   return (

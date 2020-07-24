@@ -4,8 +4,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // reset css
-import './resources/style/reset.css';
-import './resources/style/basic.scss';
+import './style/reset.css';
+import './style/basic.scss';
 
 ReactDOM.render(
     <App />,

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {Button, Input} from '../../atoms/index.js';
-import {Dropdown} from '../../molecules/'
+import {Dropdown} from '../../molecules'
 import s from './style.module.scss';
 import {Context} from '../../../features/context.js';
 
