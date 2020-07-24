@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {DropdownItem} from '../../atoms/';
+import {DropdownItem} from '../../atoms';
 import s from './style.module.scss';
 
 export const Dropdown = (props) => {
